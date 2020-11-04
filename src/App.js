@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import DisplayPokemon from './components/DisplayPokemon'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -7,10 +8,16 @@ function App() {
 
 const [pokemon, setPokemon] = useState([]);
 
+// useEffect(() => {
+//   console.log("Pokemon")
+//   Axios.get("https://pokeapi.co/api/v2/pokemon/?limit=807")
+//     .then(res => setPokemon(res.data.results))
+//     .catch(err => console.log(err))
+// },[])
+
 const getPokemon = () =>{
-  fetch("https://pokeapi.co/api/v2/pokemon/?limit=807")
-  .then(res => res.json())
-  .then(res => setPokemon(res.results))
+  Axios.get("https://pokeapi.co/api/v2/pokemon/?limit=807")
+  .then(res => setPokemon(res.data.results))
   .catch(err => console.log(err))
 }
 
